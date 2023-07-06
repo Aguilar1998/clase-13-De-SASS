@@ -1,0 +1,215 @@
+/* 
+
+    ¿Qué es un mixin en SASS/SCSS?
+    Es una función que nos permite ahorrar líneas de código y pueden usar:
+    👉 Argumentos (son como las variables)
+    👉 @content
+
+    Podemos definir varios tipos:
+    👉 Mixin sin Argumentos
+    👉 Mixin con Argumentos
+        👉 Sólo 1 argumento
+        👉 Más de 1 argumento
+        👉 Argumento con valor por defecto
+    👉 Mixin con la Regla @content
+    👉 Mixin para Flex
+    👉 Mixin para Grid
+    👉 Mixin para Responsive Design
+    👉 Cómo crear tu propio Mixin
+
+*/
+
+/* 
+    creamos el mixin
+    usamos con @include
+    si no hay argumentos/parametros podemos no poder el ()
+*/
+
+
+
+// mixin con ()
+@mixin miMixin() {
+    background: black;
+}
+
+header {
+    @include miMixin();
+}
+
+// -------------------------------------------------
+
+
+
+
+
+
+
+// mixin sin ()
+@mixin color {
+    color: black;
+}
+
+header {
+    @include color
+}
+
+// -------------------------------------------------
+
+
+
+
+
+
+// mixin con un parametro
+// $parametro1 : red; // esto seria lo mismo que el parametro, es decir una variable
+
+@mixin nombre($parametro1) {
+    color: $parametro1;
+}
+
+header {
+    @include nombre(red)
+}
+
+// -------------------------------------------------
+
+
+
+
+
+// Mixin con un parametro declarado dentro del mixin
+@mixin nombrenro2($parametro1: green) {
+    color: $parametro1;
+}
+
+
+main {
+    @include nombrenro2()
+}
+
+// -------------------------------------------------
+
+
+// mixin de flex reutilizable
+@mixin flexGeneral($dy, $direction, $justcnt) {
+    display: $dy;
+    flex-direction: $direction;
+    justify-content: $justcnt;
+    align-items: center;
+}
+
+
+section {
+    @include flexGeneral(flex, column, center)
+}
+
+
+article {
+    @include flexGeneral(flex, row, start)
+}
+
+
+footer {
+    @include flexGeneral(flex, '', start)
+}
+
+// -------------------------------------------------
+
+
+
+
+// mixin con media query
+@mixin mobil() {
+    @media screen and (max-width: 480px) {
+        @content;
+    }
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include mobil() {
+        flex-direction: row;
+        justify-content: start;
+    }
+}
+
+// Utilizando dos mixin a la vez y utilizando una variable en su llamado
+$columna: column;
+
+footer {
+    @include flexGeneral(flex, $columna, center);
+
+    @include mobil() {
+        flex-direction: row;
+    }
+}
+
+// -------------------------------------------------
+
+
+
+
+
+
+
+// Extend 
+// El nombre tiene que comenzar con minuscula, de lo contrario no funcionaria como paso en clases.
+%estilosFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+%estiloGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(3, 1fr);
+    grid-area:
+        'espacio1 espacio2 '
+        'espacio1 espacio2 '
+        'espacio1 espacio2 '
+    ;
+    // pueden colocar un media query
+}
+
+%fondo {
+    background-color: #dddddd;
+    padding: 20px;
+}
+
+header {
+    background-color: tomato;
+    color: white;
+
+    nav {
+        @extend header;
+
+        ul {
+            @extend %estilosFlex;
+        }
+    }
+}
+
+main {
+    @extend %estiloGrid;
+    gap: 1rem;
+}
+
+
+// Condicional
+$variable1: "Sabina";
+
+header {
+
+    @if $variable1 =="Sabina" {
+        background-color: green;
+    }
+
+    @else {
+        background-color: red;
+    }
+}
