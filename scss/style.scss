@@ -2,27 +2,30 @@
 
     ¿Qué es un mixin en SASS/SCSS?
     Es una función que nos permite ahorrar líneas de código y pueden usar:
-    👉 Argumentos (son como las variables)
-    👉 @content
+    
+    🔔 Argumentos (son como las variables)
+    ➡️ @content
 
     Podemos definir varios tipos:
-    👉 Mixin sin Argumentos
-    👉 Mixin con Argumentos
-        👉 Sólo 1 argumento
-        👉 Más de 1 argumento
-        👉 Argumento con valor por defecto
-    👉 Mixin con la Regla @content
-    👉 Mixin para Flex
-    👉 Mixin para Grid
-    👉 Mixin para Responsive Design
-    👉 Cómo crear tu propio Mixin
+    🔹 Mixin sin Argumentos
+    🔹 Mixin con Argumentos
+        👉 Sólo 1 argumento ✨
+        👉 Más de 1 argumento ✨
+        👉 Argumento con valor por defecto ✨
+    🔹 Mixin con la Regla @content
+    🔹 Mixin para Grid
+    🔹 Mixin para Flex
+    🔹 Mixin para Responsive Design
+    🔹 Cómo crear tu propio Mixin
 
 */
 
 /* 
-    creamos el mixin
-    usamos con @include
-    si no hay argumentos/parametros podemos no poder el ()
+    Pasos: 
+
+    1- Creamos el mixin.
+    2- Usamos con @include.
+    3- Si no hay argumentos/parametros podemos no poder el ().
 */
 
 
